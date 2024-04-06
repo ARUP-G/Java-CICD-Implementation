@@ -8,8 +8,9 @@ pipeline{
     stages{
         stage('checkout'){
             steps{
+                git branch: 'main', url: 'https://github.com/ARUP-G/Java-CICD-Implementation'
                 sh 'echo passed'
-            }
+            }    
         }
         stage('Build and Test'){
             steps{
