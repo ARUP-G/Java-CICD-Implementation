@@ -19,6 +19,16 @@ pipeline{
                 sh 'cd spring-boot-app && mvn clean package'
             }
         }
+        stage{
+            environment {
+                SONAR_URL = "http://35.174.176.230:9000"
+            }
+            steps{
+                withCredentials([string(credentialsId: 'sonarqube' , variable: 'SONAR_AUTH_TOKEN')]){
+                    sh 'cd spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+                }
+            }
+        }
         stage('Build and push Dokcer image'){
             environment {
                 DOCKER_IMAGE = "ard3dk/java-cicd:${BUILD_NUMBER}"
@@ -34,5 +44,30 @@ pipeline{
                 }
             }
         }
-    }
+        stage('Checkout K8S manifest SCM'){
+            steps {
+                git url: 'https://github.com/ARUP-G/Java-CICD-Implementation-Deployment-Manifest',
+                branch: 'main'
+            }
+        }
+        stage('Update Deployment File'){
+            steps{
+                script{
+                withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                    sh '''
+                        cd deploy
+                        cat deployment.yml
+                        sed -i '' "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
+                        cat deployment.yml
+                        git add deployment.yml
+                        git commit -m 'Updated the deployment yaml | Jenkins Pipeline'
+                        git remote -v
+                        git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                        git push https://github.com/ARUP-G/Java-CICD-Implementation-Deployment-Manifest HEAD:main
+                        '''      
+                    }
+                }
+            }
+        }
+    }   
 }
