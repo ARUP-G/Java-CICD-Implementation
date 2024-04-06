@@ -19,7 +19,7 @@ pipeline{
                 sh 'cd spring-boot-app && mvn clean package'
             }
         }
-        stage{
+        stage('Static Code Analysis') {
             environment {
                 SONAR_URL = "http://35.174.176.230:9000"
             }
