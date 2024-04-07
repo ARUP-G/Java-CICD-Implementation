@@ -54,7 +54,7 @@ pipeline{
         }
         stage('Update Deployment File'){
             environment {
-                GIT_REPO_NAME = "Java-CICD-Implementation"
+                GIT_REPO_NAME = "Java-CICD-Implementation-Deployment-Manifest"
                 GIT_USER_NAME = "ARUP-G"
             }
             steps{
