@@ -53,10 +53,16 @@ pipeline{
             }
         }
         stage('Update Deployment File'){
+            environment {
+                GIT_REPO_NAME = "Java-CICD-Implementation"
+                GIT_USER_NAME = "ARUP-G"
+            }
             steps{
                 script{
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
+                        git config user.email "darup2019.xyz@gmail.com"
+                        git config user.name "Arup"
                         cd deploy
                         cat deployment.yml
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
