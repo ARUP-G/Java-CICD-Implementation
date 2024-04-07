@@ -59,7 +59,7 @@ pipeline{
                     sh '''
                         cd deploy
                         cat deployment.yml
-                        sed -i '' "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
+                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
                         cat deployment.yml
                         git add deployment.yml
                         git commit -m 'Updated the deployment yaml | Jenkins Pipeline'
