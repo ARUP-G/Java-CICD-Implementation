@@ -62,7 +62,7 @@ pipeline{
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
                         git config user.email "darup2019.xyz@gmail.com"
-                        git config user.name "ARUP_G"
+                        git config user.name "ARUP-G"
                         cd deploy
                         cat deployment.yml
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
@@ -70,7 +70,7 @@ pipeline{
                         git add deployment.yml
                         git remote -v
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                        git push https://github.com/ARUP-G/Java-CICD-Implementation-Deployment-Manifest HEAD:main
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         '''      
                     }
                 }
