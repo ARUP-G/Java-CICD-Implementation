@@ -178,7 +178,7 @@ docker run -d -p 9000:9000 sonarqube:lts-community
  ```
 - Obtain SonarQube access token and configure it in Jenkins under credentials.
 
-![Sonarqube-app-status](images\soanrqube-2.png)
+![Sonarqube-app-status](images/soanrqube-2.png)
 
 ## Monitoring
 - Monitor the CI/CD pipeline execution in Jenkins.
