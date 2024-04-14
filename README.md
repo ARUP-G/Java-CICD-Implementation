@@ -44,7 +44,7 @@ This project is a SpringBoot application developed to demonstrate a Continuous I
 ```
 4. **Navigate to the project directory.**
 ```sh
-cd Java-CICD-Implementation
+cd Java-CICD-Implementation/spring-boot-app
 ```
 5. **Build the Docker image.**
 ```sh
