@@ -32,7 +32,7 @@ This project is a SpringBoot application developed to demonstrate a Continuous I
  - In the bottom tabs -> Click on Security
  - Security groups
  - Add inbound traffic rules 
- - Allow TCP port:`8000`(for Jenkins) & port:`9000` (for Sonarqube)
+ - Allow TCP port:`8080`(for Jenkins) & port:`9000` (for Sonarqube)
 
  ![Inbound Rules](images/inboundRules.png)
 
@@ -40,11 +40,11 @@ This project is a SpringBoot application developed to demonstrate a Continuous I
 3. **Clone this repository to your EC2 instance.**
 
 ```sh
- git clone https://github.com/ARUP-G/Python-todoApp-Jenkins-Argocd-K8s
+ git clone https://github.com/ARUP-G/Java-CICD-Implementation
 ```
 4. **Navigate to the project directory.**
 ```sh
-cd Python-todoApp-Jenkins-Argocd-K8s
+cd Java-CICD-Implementation
 ```
 5. **Build the Docker image.**
 ```sh
@@ -52,9 +52,9 @@ dokcer build -t spring-boot-app .
 ```
 6. **Run the Docker container locally for testing.**
 ```sh
-docker run -d -p 8080:8080 spring-boot-app
+docker run -d -p 8000:8000 spring-boot-app
 ```
-7. **Access the application at** `http://your_ec2_public_ip:8080`.
+7. **Access the application at** `http://your_ec2_public_ip:8000`.
 
 ## AWS EC2 Configuration
 - Update existing packages
@@ -79,7 +79,7 @@ sudo apt-get install jenkins
 ```sh
 ps -ef | grep jennkins
 ```
-- Can Access the jenkins in `http://your_ec2_public_ip:8000`
+- Can Access the jenkins in `http://your_ec2_public_ip:8080`
 - For admin password
 ```sh
  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
