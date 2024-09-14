@@ -2,6 +2,8 @@
 ## Overview
 This project is a SpringBoot application developed to demonstrate a Continuous Integration and Continuous Deployment (CI/CD) pipeline using Docker, Jenkins, ArgoCD, Kubernetes, and SonarQube. The application serves as a template for developers to understand and implement CI/CD practices in their SpringBoot projects.
 **The entire setup is deployed on an AWS EC2 instance, showcasing a cloud-based infrastructure for continuous integration and deployment.**
+ 
+ ![App](images/app.png)
 
 ## Features
 - SpringBoot application template.
